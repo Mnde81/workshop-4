@@ -12,18 +12,35 @@ function handleInputChange(event) {
 }
 
 function addTask() {
-
+    if (newTask.trim() !== "") {
+        setTasks(t => [...t, newTask]);
+    }
+    
 }
 
 function deleteTask(index) {
+    const updatedTask = tasks.filter((element, indx) => indx !== index);
+    setTasks(updatedTask);
 
 }
 
 function moveTaskUp(index) {
+    const updatedTasks = [...tasks];
+
+    if (index > 0) {
+    [updatedTasks[index], updatedTasks[index-1]] = [updatedTasks[index-1], updatedTasks[index]];
+}
+    setTasks(updatedTasks);
 
 }
 
 function moveTaskDown(index) {
+    const updatedTasks = [...tasks];
+
+    if (index < tasks.length - 1) {
+    [updatedTasks[index], updatedTasks[index+1]] = [updatedTasks[index+1], updatedTasks[index]];
+}
+    setTasks(updatedTasks);
 
 }
 
